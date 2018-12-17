@@ -1,0 +1,17 @@
+1 sudokusolveralgorithm
+2 check_location_is_safe
+3 find_empty_location
+4 print_grid
+5 solve_sudoku
+6 used_in_box
+7 used_in_col
+8 used_in_row
+#
+1 5 U
+1 4 U
+2 8 U
+2 7 U
+2 6 U
+5 5 U
+5 3 U
+5 2 U

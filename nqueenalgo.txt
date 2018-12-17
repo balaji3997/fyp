@@ -1,0 +1,11 @@
+1 nqueenalgo
+2 isSafe
+3 printSolution
+4 solveNQ
+5 solveNQUtil
+#
+1 4 U
+5 5 U
+5 2 U
+4 5 U
+4 3 U

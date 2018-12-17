@@ -1,0 +1,96 @@
+Timer unit: 1e-06 s
+
+File: nqueenalgo.py
+Function: printSolution at line 11
+Total time: 8.9e-05 s
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+    11                                           @profile
+    12                                           def printSolution(board): 
+    13         5           14      2.8     15.7  	for i in range(N): 
+    14        20           11      0.6     12.4  		for j in range(N): 
+    15        16           29      1.8     32.6  			print(board[i][j], end=' ') 
+    16         4           35      8.8     39.3  		print()
+
+File: nqueenalgo.py
+Function: isSafe at line 27
+Total time: 0.000155 s
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+    27                                           @profile
+    28                                           def isSafe(board, row, col): 
+    29                                           
+    30                                           	# Check this row on left side 
+    31        55           34      0.6     21.9  	for i in range(col): 
+    32        40           18      0.5     11.6  		if board[row][i] == 1: 
+    33        11            7      0.6      4.5  			return False
+    34                                           
+    35                                           	# Check upper diagonal on left side 
+    36        38           37      1.0     23.9  	for i,j in zip(list(range(row,-1,-1)), list(range(col,-1,-1))): 
+    37        28           15      0.5      9.7  		if board[i][j] == 1: 
+    38         5            3      0.6      1.9  			return False
+    39                                           
+    40                                           	# Check lower diagonal on left side 
+    41        26           25      1.0     16.1  	for i,j in zip(list(range(row,N,1)), list(range(col,-1,-1))): 
+    42        18           10      0.6      6.5  		if board[i][j] == 1: 
+    43         2            1      0.5      0.6  			return False
+    44                                           
+    45         8            5      0.6      3.2  	return True
+
+File: nqueenalgo.py
+Function: solveNQUtil at line 48
+Total time: 0.000367 s
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+    48                                           @profile
+    49                                           def solveNQUtil(board, col): 
+    50                                           	# base case: If all queens are placed 
+    51                                           	# then return true 
+    52         9            4      0.4      1.1  	if col >= N: 
+    53         1            1      1.0      0.3  		return True
+    54                                           
+    55                                           	# Consider this column and try placing 
+    56                                           	# this queen in all rows one by one 
+    57        30           17      0.6      4.6  	for i in range(N): 
+    58                                           
+    59        26          322     12.4     87.7  		if isSafe(board, i, col): 
+    60                                           			# Place this queen in board[i][col] 
+    61         8            5      0.6      1.4  			board[i][col] = 1
+    62                                           
+    63                                           			# recur to place rest of the queens 
+    64         8           12      1.5      3.3  			if solveNQUtil(board, col+1) == True: 
+    65         4            3      0.8      0.8  				return True
+    66                                           
+    67                                           			# If placing queen in board[i][col 
+    68                                           			# doesn't lead to a solution, then 
+    69                                           			# queen from board[i][col] 
+    70         4            2      0.5      0.5  			board[i][col] = 0
+    71                                           
+    72                                           	# if the queen can not be placed in any row in 
+    73                                           	# this colum col then return false 
+    74         4            1      0.2      0.3  	return False
+
+File: nqueenalgo.py
+Function: solveNQ at line 86
+Total time: 0.000523 s
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+    86                                           @profile
+    87                                           def solveNQ(): 
+    88         1            2      2.0      0.4  	board = [ [0, 0, 0, 0], 
+    89         1            1      1.0      0.2  			[0, 0, 0, 0], 
+    90         1            1      1.0      0.2  			[0, 0, 0, 0], 
+    91         1            1      1.0      0.2  			[0, 0, 0, 0] 
+    92                                           			] 
+    93                                           
+    94         1          411    411.0     78.6  	if solveNQUtil(board, 0) == False: 
+    95                                           		print("Solution does not exist")
+    96                                           		return False
+    97                                           
+    98         1          107    107.0     20.5  	printSolution(board) 
+    99         1            0      0.0      0.0  	return True
+
