@@ -231,6 +231,42 @@ def putannot(f_name,node,s):
 		fa.write(line)
 	fa.close()
 
+def offload_func(f_name):
+	fa=open(f_name+'.py','r')
+	la=fa.readlines()
+	access=0
+	fil=open(f_name+'1.py','w')
+	for j,line in enumerate(la):
+		if(line.startswith('@offload_fog')):
+			access=1
+		elif(line.startswith('@execute_local') or line.startswith('if __name__')):
+			access=0
+		elif(access==1):
+			if(line.startswith('@offload_fog')):
+				continue
+			else:
+				fil.write(line)
+	fa.close()
+	fil.close()
+
+def socket_func(f_name):
+	s=socket.socket()
+	host="192.168.43.28"
+	port=5555
+	s.connect((host,port))
+	name=f_name+'1.py'
+	s.send(name.encode('ascii'))
+	#s.close()
+	#s.connect((host,port))
+	f=open(name,'rb')
+	l=f.read(1024)
+	while(l):
+		s.send(l)
+		l=f.read(1024)
+	f.close()
+	s.close()
+
+
 if __name__=='__main__':
 	li=list(sys.argv)
 	print("the list of programs to profile",li[1:])
@@ -323,11 +359,12 @@ if __name__=='__main__':
 
 
 		#The algorithm for partitioning
-		offload_cloud_list=[]
+		#offload_cloud_list=[]
 		offload_fog_list=[]
 		for i,node in enumerate(d_list[1:]):
 			local_exec=True
 			#for offloading to cloud
+			'''
 			if node in offload_cloud_list:
 				for n in graph[node]:
 					if n not in offload_cloud_list:
@@ -344,7 +381,7 @@ if __name__=='__main__':
 							putannot(f_name,n,'@offload_cloud\n')
 							local_exec=False
 						continue
-			#for offloading to fog
+			'''
 			if node in offload_fog_list:
 				for n in graph[node]:
 					if n not in offload_fog_list:
@@ -352,7 +389,9 @@ if __name__=='__main__':
 						local_exec=False
 				continue
 			elif(cpu_util_avg>f_cpu_util_avg):
-				if(pi_res_time+(e_map[node]/2)<e_map[node] and(nw_up>float(1.0) and nw_dwn>float(1.0))):
+				#if(pi_res_time+(e_map[node]/2)<e_map[node] and(nw_up>float(1.0) and nw_dwn>float(1.0))):
+				if(pi_res_time+(e_map[node]/2)<e_map[node]): #original condition
+				#if(e_map[node]/2<e_map[node]): #dummy condition
 					offload_fog_list.append(node)
 					putannot(f_name,node,'@offload_fog\n')
 					local_exec=False
@@ -363,4 +402,7 @@ if __name__=='__main__':
 						continue
 			if(local_exec==True):
 				putannot(f_name,node,'@execute_local\n')
-
+		#function to copy the methods to be offloaded to a new file
+		offload_func(f_name)
+		if(len(offload_fog_list)>0):
+			socket_func(f_name)
