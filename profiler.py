@@ -390,8 +390,8 @@ if __name__=='__main__':
 				continue
 			elif(cpu_util_avg>f_cpu_util_avg):
 				#if(pi_res_time+(e_map[node]/2)<e_map[node] and(nw_up>float(1.0) and nw_dwn>float(1.0))):
-				if(pi_res_time+(e_map[node]/2)<e_map[node]): #original condition
-				#if(e_map[node]/2<e_map[node]): #dummy condition
+				#if(pi_res_time+(e_map[node]/2)<e_map[node]): #original condition
+				if(e_map[node]/2<e_map[node]): #dummy condition
 					offload_fog_list.append(node)
 					putannot(f_name,node,'@offload_fog\n')
 					local_exec=False
