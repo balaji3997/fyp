@@ -15,6 +15,8 @@ for i in range(1,len(li)):
 			del l[j]
 		elif(line.startswith('@offload_cloud')):
 			del l[j]
+		elif(line.startswith('@offload')):
+			del l[j]
 	f.close()
 	f=open(li[i],'w')
 	for line in l:

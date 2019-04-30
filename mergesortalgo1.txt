@@ -1,0 +1,78 @@
+Timer unit: 1e-06 s
+
+File: mergesortalgo.py
+Function: merge at line 5
+Total time: 0 s
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+     5                                           @profile
+     6                                           def merge(arr,l,m,r):
+     7                                           	n1=int(m-l+1)
+     8                                           	n2=int(r-m)
+     9                                           	
+    10                                           	L=[0]*(n1)
+    11                                           	R=[0]*(n2)
+    12                                           	
+    13                                           	for i in range(0,n1):
+    14                                           		L[i]=arr[l+i]
+    15                                           	
+    16                                           	for j in range(0,n2):
+    17                                           		R[j]=arr[m+1+j]
+    18                                           	i=0
+    19                                           	j=0
+    20                                           	k=l
+    21                                           
+    22                                           	while(i<n1 and j<n2):
+    23                                           		if(L[i] <=R[j]):
+    24                                           			arr[k]=L[i]
+    25                                           			i+=1
+    26                                           		else:
+    27                                           			arr[k]=R[j]
+    28                                           			j+=1
+    29                                           		k+=1
+    30                                           
+    31                                           	while(i<n1):
+    32                                           		arr[k]=L[i]
+    33                                           		i+=1
+    34                                           		k+=1
+    35                                           
+    36                                           	while(j<n2):
+    37                                           		arr[k]=R[j]
+    38                                           		j+=1
+    39                                           		k+=1
+
+File: mergesortalgo.py
+Function: mergeSort at line 41
+Total time: 0 s
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+    41                                           @profile
+    42                                           def mergeSort(arr,l,r):
+    43                                           	if(l<r):
+    44                                           		m=int((l+(r-1))/2)
+    45                                           		mergeSort(arr,l,m)
+    46                                           		mergeSort(arr,m+1,r)
+    47                                           		merge(arr,l,m,r)
+
+File: mergesortalgo.py
+Function: main at line 48
+Total time: 5.9e-05 s
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+    48                                           @profile
+    49                                           def main():
+    50         1            2      2.0      3.4  	arr=[12,11,13,5,6,7]
+    51         1            2      2.0      3.4  	n=int(len(arr))
+    52         1           37     37.0     62.7  	print("given array is\n")
+    53         7            6      0.9     10.2  	for i in range(n):
+    54         6           12      2.0     20.3  		print(arr[i],end=" ")
+    55                                           	with PyCallGraph(output=GraphvizOutput()):
+    56                                           		mergeSort(arr,0,n-1)
+    57                                           	print("\n Sorted array\n")
+    58                                           	for i in range(n):
+    59                                           		print(arr[i],end=" ")
+    60                                           	print("\n")
+

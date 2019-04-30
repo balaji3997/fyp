@@ -2,57 +2,57 @@ Timer unit: 1e-06 s
 
 File: mergesortalgorithm.py
 Function: merge at line 6
-Total time: 8.2e-05 s
+Total time: 0.000148 s
 
 Line #      Hits         Time  Per Hit   % Time  Line Contents
 ==============================================================
      6                                           @profile
      7                                           def merge(arr,l,m,r):
-     8         5            4      0.8      4.9  	n1=int(m-l+1)
-     9         5            1      0.2      1.2  	n2=int(r-m)
+     8         5            7      1.4      4.7  	n1=int(m-l+1)
+     9         5            5      1.0      3.4  	n2=int(r-m)
     10                                           	
-    11         5            2      0.4      2.4  	L=[0]*(n1)
-    12         5            2      0.4      2.4  	R=[0]*(n2)
+    11         5            4      0.8      2.7  	L=[0]*(n1)
+    12         5            4      0.8      2.7  	R=[0]*(n2)
     13                                           	
-    14        12            6      0.5      7.3  	for i in range(0,n1):
-    15         7            5      0.7      6.1  		L[i]=arr[l+i]
+    14        12           15      1.2     10.1  	for i in range(0,n1):
+    15         7            6      0.9      4.1  		L[i]=arr[l+i]
     16                                           	
-    17        14            7      0.5      8.5  	for j in range(0,n2):
-    18         9            5      0.6      6.1  		R[j]=arr[m+1+j]
-    19         5            2      0.4      2.4  	i=0
-    20         5            1      0.2      1.2  	j=0
-    21         5            4      0.8      4.9  	k=l
+    17        14           12      0.9      8.1  	for j in range(0,n2):
+    18         9            8      0.9      5.4  		R[j]=arr[m+1+j]
+    19         5            4      0.8      2.7  	i=0
+    20         5            3      0.6      2.0  	j=0
+    21         5            5      1.0      3.4  	k=l
     22                                           
-    23        13            6      0.5      7.3  	while(i<n1 and j<n2):
-    24         8            4      0.5      4.9  		if(L[i] <=R[j]):
-    25         4            2      0.5      2.4  			arr[k]=L[i]
-    26         4            2      0.5      2.4  			i+=1
+    23        13           11      0.8      7.4  	while(i<n1 and j<n2):
+    24         8            8      1.0      5.4  		if(L[i] <=R[j]):
+    25         4            3      0.8      2.0  			arr[k]=L[i]
+    26         4            3      0.8      2.0  			i+=1
     27                                           		else:
-    28         4            3      0.8      3.7  			arr[k]=R[j]
-    29         4            1      0.2      1.2  			j+=1
-    30         8            4      0.5      4.9  		k+=1
+    28         4            3      0.8      2.0  			arr[k]=R[j]
+    29         4            4      1.0      2.7  			j+=1
+    30         8            7      0.9      4.7  		k+=1
     31                                           
-    32         8            4      0.5      4.9  	while(i<n1):
-    33         3            2      0.7      2.4  		arr[k]=L[i]
-    34         3            2      0.7      2.4  		i+=1
-    35         3            0      0.0      0.0  		k+=1
+    32         8            6      0.8      4.1  	while(i<n1):
+    33         3            3      1.0      2.0  		arr[k]=L[i]
+    34         3            3      1.0      2.0  		i+=1
+    35         3            3      1.0      2.0  		k+=1
     36                                           
-    37        10            4      0.4      4.9  	while(j<n2):
-    38         5            3      0.6      3.7  		arr[k]=R[j]
-    39         5            3      0.6      3.7  		j+=1
-    40         5            3      0.6      3.7  		k+=1
+    37        10            9      0.9      6.1  	while(j<n2):
+    38         5            4      0.8      2.7  		arr[k]=R[j]
+    39         5            4      0.8      2.7  		j+=1
+    40         5            4      0.8      2.7  		k+=1
 
 File: mergesortalgorithm.py
 Function: mergeSort at line 44
-Total time: 0.000198 s
+Total time: 0.000326 s
 
 Line #      Hits         Time  Per Hit   % Time  Line Contents
 ==============================================================
     44                                           @profile
     45                                           def mergeSort(arr,l,r):
-    46        11            7      0.6      3.5  	if(l<r):
-    47         5            6      1.2      3.0  		m=int((l+(r-1))/2)
-    48         5            7      1.4      3.5  		mergeSort(arr,l,m)
-    49         5            5      1.0      2.5  		mergeSort(arr,m+1,r)
-    50         5          173     34.6     87.4  		merge(arr,l,m,r)
+    46        11            8      0.7      2.5  	if(l<r):
+    47         5            6      1.2      1.8  		m=int((l+(r-1))/2)
+    48         5           10      2.0      3.1  		mergeSort(arr,l,m)
+    49         5            9      1.8      2.8  		mergeSort(arr,m+1,r)
+    50         5          293     58.6     89.9  		merge(arr,l,m,r)
 

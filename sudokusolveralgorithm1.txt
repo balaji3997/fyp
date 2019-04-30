@@ -1,123 +1,144 @@
 Timer unit: 1e-06 s
 
+File: /usr/local/lib/python3.6/dist-packages/line_profiler.py
+Function: f at line 97
+Total time: 0.241436 s
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+    97                                                   def f(*args, **kwds):
+    98     36534        15039      0.4      6.2              self.enable_by_count()
+    99     36536        12502      0.3      5.2              try:
+   100     36536       185449      5.1     76.8                  result = func(*args, **kwds)
+   101                                                       finally:
+   102     36534        16001      0.4      6.6                  self.disable_by_count()
+   103     36534        12445      0.3      5.2              return result
+
 File: sudokusolveralgorithm.py
 Function: print_grid at line 16
-Total time: 0.000261 s
+Total time: 0.00028 s
 
 Line #      Hits         Time  Per Hit   % Time  Line Contents
 ==============================================================
     16                                           @profile
-    17                                           def print_grid(arr): 
-    18        10           10      1.0      3.8      for i in range(9): 
-    19        90           46      0.5     17.6          for j in range(9): 
-    20        81          114      1.4     43.7              print(arr[i][j],end=" ") 
-    21         9           91     10.1     34.9          print ('\n') 
+    17                                           @profile
+    18                                           def print_grid(arr): 
+    19        10            7      0.7      2.5      for i in range(9): 
+    20        90           59      0.7     21.1          for j in range(9): 
+    21        81          115      1.4     41.1              print(arr[i][j],end=" ") 
+    22         9           99     11.0     35.4          print ('\n') 
 
 File: sudokusolveralgorithm.py
-Function: find_empty_location at line 43
-Total time: 0.025674 s
+Function: find_empty_location at line 44
+Total time: 0.026082 s
 
 Line #      Hits         Time  Per Hit   % Time  Line Contents
 ==============================================================
-    43                                           @profile
-    44                                           def find_empty_location(arr,l): 
-    45      3181         1522      0.5      5.9      for row in range(9): 
-    46     28650        11604      0.4     45.2          for col in range(9): 
-    47     26239        11577      0.4     45.1              if(arr[row][col]==0): 
-    48       769          365      0.5      1.4                  l[0]=row 
-    49       769          322      0.4      1.3                  l[1]=col 
-    50       769          283      0.4      1.1                  return True
-    51         1            1      1.0      0.0      return False
+    44                                           @profile
+    45                                           @profile
+    46                                           def find_empty_location(arr,l): 
+    47      3181         1411      0.4      5.4      for row in range(9): 
+    48     28650        11966      0.4     45.9          for col in range(9): 
+    49     26239        11763      0.4     45.1              if(arr[row][col]==0): 
+    50       769          327      0.4      1.3                  l[0]=row 
+    51       769          315      0.4      1.2                  l[1]=col 
+    52       769          300      0.4      1.2                  return True
+    53         1            0      0.0      0.0      return False
 
 File: sudokusolveralgorithm.py
-Function: used_in_row at line 67
-Total time: 0.035272 s
+Function: used_in_row at line 69
+Total time: 0.036476 s
 
 Line #      Hits         Time  Per Hit   % Time  Line Contents
 ==============================================================
-    67                                           @profile
-    68                                           def used_in_row(arr,row,num): 
-    69     40913        16415      0.4     46.5      for i in range(9): 
-    70     38728        16490      0.4     46.8          if(arr[row][i] == num): 
-    71      4547         1616      0.4      4.6              return True
-    72      2185          751      0.3      2.1      return False
+    69                                           @profile
+    70                                           @profile
+    71                                           def used_in_row(arr,row,num): 
+    72     40913        17092      0.4     46.9      for i in range(9): 
+    73     38728        16943      0.4     46.4          if(arr[row][i] == num): 
+    74      4547         1670      0.4      4.6              return True
+    75      2185          771      0.4      2.1      return False
 
 File: sudokusolveralgorithm.py
-Function: used_in_col at line 88
-Total time: 0.013063 s
+Function: used_in_col at line 91
+Total time: 0.013626 s
 
 Line #      Hits         Time  Per Hit   % Time  Line Contents
 ==============================================================
-    88                                           @profile
-    89                                           def used_in_col(arr,col,num): 
-    90     15531         6191      0.4     47.4      for i in range(9): 
-    91     14453         6123      0.4     46.9          if(arr[i][col] == num): 
-    92      1107          372      0.3      2.8              return True
-    93      1078          377      0.3      2.9      return False
+    91                                           @profile
+    92                                           @profile
+    93                                           def used_in_col(arr,col,num): 
+    94     15531         6553      0.4     48.1      for i in range(9): 
+    95     14453         6288      0.4     46.1          if(arr[i][col] == num): 
+    96      1107          396      0.4      2.9              return True
+    97      1078          389      0.4      2.9      return False
 
 File: sudokusolveralgorithm.py
-Function: used_in_box at line 109
-Total time: 0.01145 s
+Function: used_in_box at line 113
+Total time: 0.011676 s
 
 Line #      Hits         Time  Per Hit   % Time  Line Contents
 ==============================================================
-   109                                           @profile
-   110                                           def used_in_box(arr,row,col,num): 
-   111      3654         1682      0.5     14.7      for i in range(3): 
-   112     10955         4938      0.5     43.1          for j in range(3): 
-   113      8379         4405      0.5     38.5              if(arr[i+row][j+col] == num): 
-   114       309          133      0.4      1.2                  return True
-   115       769          292      0.4      2.6      return False
+   113                                           @profile
+   114                                           @profile
+   115                                           def used_in_box(arr,row,col,num): 
+   116      3654         1886      0.5     16.2      for i in range(3): 
+   117     10955         4957      0.5     42.5          for j in range(3): 
+   118      8379         4416      0.5     37.8              if(arr[i+row][j+col] == num): 
+   119       309          136      0.4      1.2                  return True
+   120       769          281      0.4      2.4      return False
 
 File: sudokusolveralgorithm.py
-Function: check_location_is_safe at line 132
-Total time: 0.124392 s
+Function: check_location_is_safe at line 137
+Total time: 0.201508 s
 
 Line #      Hits         Time  Per Hit   % Time  Line Contents
 ==============================================================
-   132                                           @profile
-   133                                           def check_location_is_safe(arr,row,col,num): 
-   134                                                 
-   135                                               # Check if 'num' is not already placed in current row, 
-   136                                               # current column and current 3x3 box 
-   137      6732       124392     18.5    100.0      return not used_in_row(arr,row,num) and not used_in_col(arr,col,num) and not used_in_box(arr,row - row%3,col - col%3,num) 
+   137                                           @profile
+   138                                           @profile
+   139                                           def check_location_is_safe(arr,row,col,num): 
+   140                                                 
+   141                                               # Check if 'num' is not already placed in current row, 
+   142                                               # current column and current 3x3 box 
+   143      6732       201508     29.9    100.0      return not used_in_row(arr,row,num) and not used_in_col(arr,col,num) and not used_in_box(arr,row - row%3,col - col%3,num) 
 
 File: sudokusolveralgorithm.py
-Function: solve_sudoku at line 154
-Total time: 0.19438 s
+Function: solve_sudoku at line 160
+Total time: 0.328724 s
 
 Line #      Hits         Time  Per Hit   % Time  Line Contents
 ==============================================================
-   154                                           @profile
-   155                                           def solve_sudoku(arr): 
-   156                                                 
-   157                                               # 'l' is a list variable that keeps the record of row and col in find_empty_location Function     
-   158       770          363      0.5      0.2      l=[0,0] 
-   159                                                 
-   160                                               # If there is no unassigned location, we are done     
-   161       770        47529     61.7     24.5      if(not find_empty_location(arr,l)): 
-   162         1            0      0.0      0.0          return True
+   160                                           @profile
+   161                                           @profile
+   162                                           def solve_sudoku(arr): 
    163                                                 
-   164                                               # Assigning list values to row and col that we got from the above Function  
-   165       769          336      0.4      0.2      row=l[0] 
-   166       769          344      0.4      0.2      col=l[1] 
-   167                                                 
-   168                                               # consider digits 1 to 9 
-   169      7452         3353      0.4      1.7      for num in range(1,10): 
-   170                                                     
-   171                                                   # if looks promising 
-   172      6732       140495     20.9     72.3          if(check_location_is_safe(arr,row,col,num)): 
-   173                                                         
-   174                                                       # make tentative assignment 
-   175       769          380      0.5      0.2              arr[row][col]=num 
-   176                                             
-   177                                                       # return, if sucess, ya! 
-   178       769          859      1.1      0.4              if(solve_sudoku(arr)): 
-   179        49           17      0.3      0.0                  return True
-   180                                             
-   181                                                       # failure, unmake & try again 
-   182       720          390      0.5      0.2              arr[row][col] = 0
-   183                                                         
-   184                                               # this triggers backtracking         
-   185       720          314      0.4      0.2      return False 
+   164                                               # 'l' is a list variable that keeps the record of row and col in find_empty_location Function     
+   165       770          411      0.5      0.1      l=[0,0] 
+   166                                                 
+   167                                               # If there is no unassigned location, we are done     
+   168       770        54362     70.6     16.5      if(not find_empty_location(arr,l)): 
+   169         1            1      1.0      0.0          return True
+   170                                                 
+   171                                               # Assigning list values to row and col that we got from the above Function  
+   172       769          356      0.5      0.1      row=l[0] 
+   173       769          329      0.4      0.1      col=l[1] 
+   174                                                 
+   175                                               # consider digits 1 to 9 
+   176      7452         3485      0.5      1.1      for num in range(1,10): 
+   177                                                     
+   178                                                   # if looks promising 
+   179      6732       264886     39.3     80.6          if(check_location_is_safe(arr,row,col,num)): 
+   180                                                         
+   181                                                       # make tentative assignment 
+   182       769          423      0.6      0.1              arr[row][col]=num 
+   183                                             
+   184                                                       # return, if sucess, ya! 
+   185       769         3726      4.8      1.1              if(solve_sudoku(arr)): 
+   186        49           19      0.4      0.0                  return True
+   187                                             
+   188                                                       # failure, unmake & try again 
+   189       720          392      0.5      0.1              arr[row][col] = 0
+   190                                                         
+   191                                               # this triggers backtracking         
+   192       720          334      0.5      0.1      return False 
 

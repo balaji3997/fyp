@@ -62,3 +62,28 @@ python3 setup.py install
 
 
 kernprof.py -l example.py; python3 -m line_profiler example.py
+
+
+
+
+##########################################
+
+install psutil module for python3 using: pip3 install psutil
+
+install sklearn module for python3 using: pip3 install sklearn
+
+install netifaces module for python3 using: pip3 install netifaces
+
+HELP NOTES:
+
+copy all the codes in all the machines 
+
+consider  atleast one device as local device
+
+consider  atleast one device as edge device (actually sserver.py code is enough in edge device) 
+
+In edge device run "python3 sserver.py"
+
+In local device run "python3 profiler.py filename" ( filename can be nqueenalgo.py or sudokusolver.py)
+
+

@@ -1,0 +1,119 @@
+Timer unit: 1e-06 s
+
+File: sudokusolver.py
+Function: print_grid at line 1
+Total time: 0.000488 s
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+     1                                           @profile
+     2                                           def print_grid(arr):
+     3        10           13      1.3      2.7  	for i in range(9):
+     4        90           65      0.7     13.3  		for j in range(9):
+     5        81          228      2.8     46.7  			print(arr[i][j],end=" ")
+     6         9          182     20.2     37.3  		print("\n")
+
+File: sudokusolver.py
+Function: find_empty_location at line 8
+Total time: 0.030041 s
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+     8                                           @profile
+     9                                           def find_empty_location(arr,l):
+    10       770          461      0.6      1.5  	res=[]
+    11      3181         1601      0.5      5.3  	for row in range(9):
+    12     28650        13114      0.5     43.7  		for col in range(9):
+    13     26239        12920      0.5     43.0  			if(arr[row][col]==0):
+    14       769          384      0.5      1.3  				l[0]=row
+    15       769          368      0.5      1.2  				l[1]=col
+    16       769          437      0.6      1.5  				res.append(True)
+    17       769          390      0.5      1.3  				res.append(l)
+    18       769          364      0.5      1.2  				return res
+    19         1            1      1.0      0.0  	res.append(False)
+    20         1            1      1.0      0.0  	res.append(l)
+    21         1            0      0.0      0.0  	return res
+
+File: sudokusolver.py
+Function: used_in_row at line 23
+Total time: 0.038917 s
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+    23                                           @profile
+    24                                           def used_in_row(arr,row,num):
+    25     40913        18336      0.4     47.1  	for i in range(9):
+    26     38728        17941      0.5     46.1  		if(arr[row][i]==num):
+    27      4547         1791      0.4      4.6  			return True
+    28      2185          849      0.4      2.2  	return False
+
+File: sudokusolver.py
+Function: used_in_col at line 30
+Total time: 0.014339 s
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+    30                                           @profile
+    31                                           def used_in_col(arr,col,num):
+    32     15531         6733      0.4     47.0  	for i in range(9):
+    33     14453         6773      0.5     47.2  		if(arr[i][col]==num):
+    34      1107          446      0.4      3.1  			return True
+    35      1078          387      0.4      2.7  	return False
+
+File: sudokusolver.py
+Function: used_in_box at line 37
+Total time: 0.012193 s
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+    37                                           @profile
+    38                                           def used_in_box(arr,row,col,num):
+    39      3654         1868      0.5     15.3  	for i in range(3):
+    40     10955         5238      0.5     43.0  		for j in range(3):
+    41      8379         4643      0.6     38.1  			if(arr[i+row][j+col]==num):
+    42       309          136      0.4      1.1  				return True
+    43       769          308      0.4      2.5  	return False
+
+File: sudokusolver.py
+Function: check_location_is_safe at line 45
+Total time: 0.136018 s
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+    45                                           @profile
+    46                                           def check_location_is_safe(arr,row,col,num):
+    47      6732       136018     20.2    100.0  	return not used_in_row(arr,row,num) and not used_in_col(arr,col,num) and not used_in_box(arr,row-row%3,col-col%3,num)
+
+File: sudokusolver.py
+Function: solve_sudoku at line 49
+Total time: 0.220637 s
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+    49                                           @profile
+    50                                           def solve_sudoku(arr):
+    51       770          501      0.7      0.2  	l=[0,0]
+    52       770          385      0.5      0.2  	r=[]
+    53       770        56135     72.9     25.4  	ans=find_empty_location(arr,l)
+    54       770          449      0.6      0.2  	if(ans[0]==False):
+    55         1            1      1.0      0.0  		r.append(True)
+    56         1            1      1.0      0.0  		r.append(arr)
+    57         1            0      0.0      0.0  		return r
+    58       769          542      0.7      0.2  	l=ans[1].copy()
+    59       769          391      0.5      0.2  	row=l[0]
+    60       769          390      0.5      0.2  	col=l[1]
+    61      7452         3987      0.5      1.8  	for num in range(1,10):
+    62      6732       153717     22.8     69.7  		if(check_location_is_safe(arr,row,col,num)):
+    63       769          456      0.6      0.2  			arr[row][col]=num
+    64                                           			#a=arr.copy()
+    65       769          987      1.3      0.4  			res=solve_sudoku(arr)
+    66       769          568      0.7      0.3  			arr=res[1].copy()
+    67       769          443      0.6      0.2  			if(res[0]==True):
+    68        49           29      0.6      0.0  				r.append(True)
+    69        49           26      0.5      0.0  				r.append(arr)
+    70        49           21      0.4      0.0  				return r
+    71       720          406      0.6      0.2  			arr[row][col]=0
+    72       720          443      0.6      0.2  	r.append(False)
+    73       720          402      0.6      0.2  	r.append(arr)
+    74       720          357      0.5      0.2  	return r
+

@@ -1,0 +1,23 @@
+f_name='dataset.txt'
+f=open(f_name,'r')
+l=f.readlines()
+xtrain=[]
+ytrain=[]
+for i in l[1:]:
+	temp=[]
+	lis=list(i.split(','))
+	#print(lis)
+	#lis=list(lis[0].split('\t'))
+	#print(lis)
+	temp.append(float(lis[0]))
+	temp.append(int(lis[1]))
+	temp.append(float(lis[2]))
+	temp.append(float(lis[3]))
+	xtrain.append(temp)
+	t=str(lis[4]).replace('\n','')
+	t=int(t)
+	ytrain.append(t)
+print(xtrain)
+#print("len(xtrain)",len(xtrain))
+print(ytrain)
+#print("len(ytrain)",len(ytrain))

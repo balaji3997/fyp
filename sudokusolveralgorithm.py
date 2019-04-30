@@ -13,7 +13,6 @@ from pycallgraph.output import GraphvizOutput
 
 
 
-@execute_local
 def print_grid(arr): 
     for i in range(9): 
         for j in range(9): 
@@ -40,7 +39,6 @@ def print_grid(arr):
 
 
 
-@execute_local
 def find_empty_location(arr,l): 
     for row in range(9): 
         for col in range(9): 
@@ -64,7 +62,6 @@ def find_empty_location(arr,l):
 
 
 
-@execute_local
 def used_in_row(arr,row,num): 
     for i in range(9): 
         if(arr[row][i] == num): 
@@ -85,7 +82,6 @@ def used_in_row(arr,row,num):
 
 
 
-@execute_local
 def used_in_col(arr,col,num): 
     for i in range(9): 
         if(arr[i][col] == num): 
@@ -106,7 +102,6 @@ def used_in_col(arr,col,num):
 
 
 
-@execute_local
 def used_in_box(arr,row,col,num): 
     for i in range(3): 
         for j in range(3): 
@@ -129,7 +124,6 @@ def used_in_box(arr,row,col,num):
 
 
 
-@execute_local
 def check_location_is_safe(arr,row,col,num): 
       
     # Check if 'num' is not already placed in current row, 
@@ -151,7 +145,6 @@ def check_location_is_safe(arr,row,col,num):
 
 
 
-@execute_local
 def solve_sudoku(arr): 
       
     # 'l' is a list variable that keeps the record of row and col in find_empty_location Function     
@@ -191,15 +184,15 @@ if __name__=="__main__":
     grid=[[0 for x in range(9)]for y in range(9)] 
       
     # assigning values to the grid 
-    grid=[[3,0,6,5,0,8,4,0,0], 
-          [5,2,0,0,0,0,0,0,0], 
-          [0,8,7,0,0,0,0,3,1], 
-          [0,0,3,0,1,0,0,8,0], 
-          [9,0,0,8,6,3,0,0,5], 
-          [0,5,0,0,9,0,6,0,0], 
-          [1,3,0,0,0,0,2,5,0], 
-          [0,0,0,0,0,0,0,7,4], 
-          [0,0,5,2,0,6,3,0,0]] 
+    grid=[[0,0,9,8,0,0,7,0,0], 
+          [7,8,0,0,0,1,0,0,0], 
+          [5,0,0,0,0,0,0,2,8], 
+          [0,7,3,0,9,0,0,1,0], 
+          [0,0,5,0,6,0,0,0,0], 
+          [0,6,0,0,3,0,8,5,0], 
+          [0,5,0,0,0,0,0,0,9], 
+          [0,0,0,3,0,0,0,8,2], 
+          [0,0,1,0,0,7,6,0,0]] 
       
     # if sucess print the grid 
     with PyCallGraph(output=GraphvizOutput()):
